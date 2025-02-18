@@ -74,7 +74,6 @@ int	ft_checkpce(char **map)
 {
 	int		i;
 	t_pec	pec;
-	t_pec	*pce;
 
 	i = 0;
 	pec.exit = 0;
@@ -84,7 +83,5 @@ int	ft_checkpce(char **map)
 		checkperline(map, map[i++], &pec);
 	if (pec.exit != 1 || pec.player != 1 || pec.coin < 1)
 		ft_rputstr("invalid map", map);
-	pce = &pec;
-	printf("hak 1: %d coin\n", pce->coin);
-	return (pce->coin);
+	return (pec.coin);
 }
