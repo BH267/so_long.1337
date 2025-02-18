@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "solong.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

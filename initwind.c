@@ -12,45 +12,60 @@
 
 #include "solong.h"
 
-void	putimg(t_mlx mlx, int x, int y)
+void	putimg(char *path, t_mlx *mlx, int x, int y)
 {
 	int	w;
 	int	h;
 
-	w = 64;
 	h = 64;
-	mlx.pimg = mlx_xpm_file_to_image(mlx.mlx, "assets/wall.xpm", &w, &h); 
-	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, mlx.pimg, x, y);
+	w = 64;
+	mlx->pimg = mlx_xpm_file_to_image(mlx->mlx, path, &w, &h);
+	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->pimg, x, y);
 }
 
-void	putimges(t_mlx mlx)
+void	putimges(t_mlx *mlx, int x, int y)
+{
+	if (mlx->map[y / 64][x / 64] == '1')
+		putimg("assets/wall.xpm", mlx, x, y);
+	else if (mlx->map[y / 64][x / 64] == 'P')
+		putimg("assets/hero1.xpm", mlx, x, y);
+	else if (mlx->map[y / 64][x / 64] == 'C')
+		putimg("assets/keys.xpm", mlx, x, y);
+	else if (mlx->map[y / 64][x / 64] == 'E' && (mlx->pec->coin))
+		putimg("assets/closed_door.xpm", mlx, x, y);
+	else if (mlx->map[y / 64][x / 64] == 'E' && (mlx->pec->coin) == 0)
+		putimg("assets/opened_door.xpm", mlx, x, y);
+	else
+		putimg("assets/floor.xpm", mlx, x, y);
+}
+
+void	putmap(t_mlx *mlx)
 {
 	int	j;
 	int	i;
 
 	i = 0;
-	while (i < 700)
+	while (i < mlx->size.my)
 	{
 		j = 0;
-		while (j < 900)
+		while (j < mlx->size.mx)
 		{
-			putimg(mlx, j, i);
+			putimges(mlx, j, i);
 			j += 64;
 		}
 		i += 64;
 	}
 }
 
-void	dispwind(void)
+void	dispwind(t_mlx *mlx)
 {
-	t_mlx	mlx;
-
-	mlx.mlx = mlx_init();
-	if (!mlx.mlx)
+	mlx->mlx = mlx_init();
+	if (!mlx->mlx)
 		return ;
-	mlx.mlx_win = mlx_new_window(mlx.mlx, 900, 700, "awdii");
-	if (!mlx.mlx_win)
+	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->size.mx, mlx->size.my, "awdii");
+	if (!mlx->mlx_win)
 		return ;
-	putimges(mlx);
-	mlx_loop(mlx.mlx);
+	putmap(mlx);
+	mlx_key_hook(mlx->mlx_win, move, mlx);
+	mlx_loop(mlx->mlx);
 }

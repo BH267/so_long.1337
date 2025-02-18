@@ -37,9 +37,11 @@ void	validpath(char *ber)
 
 int	main(int ac, char **av)
 {
+	t_mlx	mlx;
+
 	if (ac != 2)
 		return (1);
 	validpath(av[1]);
-	ft_parsing(av[1]);
-	dispwind();
+	mlx = ft_parsing(av[1]);
+	dispwind(&mlx);
 }

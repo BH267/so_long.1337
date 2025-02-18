@@ -33,6 +33,8 @@ void	ft_checkwall(char **map, int size)
 	int	len;
 
 	len = (int)ft_strlen(map[0]) - 1;
+	if (len > 1920 / 64 || size > 1080 / 64)
+		ft_rputstr("invalid map", map);
 	i = 0;
 	while (map[0][i] != '\n')
 	{
@@ -68,10 +70,11 @@ void	checkperline(char **map, char *line, t_pec *pec)
 	}
 }
 
-t_pec	ft_checkpce(char **map)
+int	ft_checkpce(char **map)
 {
 	int		i;
 	t_pec	pec;
+	t_pec	*pce;
 
 	i = 0;
 	pec.exit = 0;
@@ -81,5 +84,7 @@ t_pec	ft_checkpce(char **map)
 		checkperline(map, map[i++], &pec);
 	if (pec.exit != 1 || pec.player != 1 || pec.coin < 1)
 		ft_rputstr("invalid map", map);
-	return (pec);
+	pce = &pec;
+	printf("hak 1: %d coin\n", pce->coin);
+	return (pce->coin);
 }

@@ -55,18 +55,23 @@ void	ft_checkway(char **cmap, char **map)
 	}
 }
 
-void	ft_parsing(char *m)
+t_mlx	ft_parsing(char *m)
 {
-	char	**map;
+	t_mlx	mlx;
 	char	**cmap;
 	t_cord	p;
 
-	map = openmap(m);
-	ft_isvalid(map);
-	ft_checkwall(map, ft_msize(m) - 1);
-	ft_checkpce(map);
-	cmap = hb_mtrcpy(map);
-	p = findplayer(map);
+	mlx.pec = malloc(sizeof(t_pec));
+	mlx.map = openmap(m);
+	mlx.size.mx = (ft_strlen(mlx.map[1]) - 1) * 64;
+	mlx.size.my = ft_msize(m) * 64;
+	ft_isvalid(mlx.map);
+	ft_checkwall(mlx.map, ft_msize(m) - 1);
+	mlx.pec->coin = ft_checkpce(mlx.map);
+	cmap = hb_mtrcpy(mlx.map);
+	p = findplayer(mlx.map);
 	ft_floodfill(cmap, p.x, p.y);
-	ft_checkway(cmap, map);
+	ft_checkway(cmap, mlx.map);
+	hb_mtrfree(cmap);
+	return (mlx);
 }
