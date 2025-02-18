@@ -59,11 +59,11 @@ char	**openmap(char *m)
 
 	fd = open(m, O_RDONLY);
 	if (fd == -1)
-		ft_rputstr("open failed", NULL);
+		ft_rputstr("open failed", NULL, 1);
 	i = 0;
 	map = (char **)malloc(sizeof(char *) * (ft_msize(m) + 1));
 	if (!map)
-		ft_rputstr("malloc failed", NULL);
+		ft_rputstr("malloc failed", NULL, 1);
 	s = get_next_line(fd);
 	while (s)
 	{

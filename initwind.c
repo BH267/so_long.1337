@@ -20,23 +20,26 @@ void	putimg(char *path, t_mlx *mlx, int x, int y)
 	h = 64;
 	w = 64;
 	mlx->pimg = mlx_xpm_file_to_image(mlx->mlx, path, &w, &h);
+	if (!mlx->pimg)
+		wexit(mlx, "Error", 1);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->pimg, x, y);
+	mlx_destroy_image(mlx->mlx, mlx->pimg);
 }
 
 void	putimges(t_mlx *mlx, int x, int y)
 {
 	if (mlx->map[y / 64][x / 64] == '1')
-		putimg("assets/wall.xpm", mlx, x, y);
+		putimg("./assets/wall.xpm", mlx, x, y);
 	else if (mlx->map[y / 64][x / 64] == 'P')
-		putimg("assets/hero1.xpm", mlx, x, y);
+		putimg("./assets/hero1.xpm", mlx, x, y);
 	else if (mlx->map[y / 64][x / 64] == 'C')
-		putimg("assets/keys.xpm", mlx, x, y);
+		putimg("./assets/keys.xpm", mlx, x, y);
 	else if (mlx->map[y / 64][x / 64] == 'E' && (mlx->pec->coin))
-		putimg("assets/closed_door.xpm", mlx, x, y);
-	else if (mlx->map[y / 64][x / 64] == 'E' && (mlx->pec->coin) == 0)
-		putimg("assets/opened_door.xpm", mlx, x, y);
+		putimg("./assets/closed_door.xpm", mlx, x, y);
+	else if (mlx->map[y / 64][x / 64] == 'E' && !(mlx->pec->coin))
+		putimg("./assets/opened_door.xpm", mlx, x, y);
 	else
-		putimg("assets/floor.xpm", mlx, x, y);
+		putimg("./assets/floor.xpm", mlx, x, y);
 }
 
 void	putmap(t_mlx *mlx)

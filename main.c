@@ -25,14 +25,14 @@ int	ft_strcmp(const char *s1, const char *s2)
 void	validpath(char *ber)
 {
 	if (!ft_strcmp(ber, ".ber"))
-		ft_rputstr("invalid path", NULL);
+		ft_rputstr("invalid path", NULL, 1);
 	while (*ber)
 		ber++;
 	ber -= 4;
 	if (*(ber - 1) == '/')
-		ft_rputstr("invalid path", NULL);
+		ft_rputstr("invalid path", NULL, 1);
 	if (ft_strcmp(ber, ".ber"))
-		ft_rputstr("invalid path", NULL);
+		ft_rputstr("invalid path", NULL, 1);
 }
 
 int	main(int ac, char **av)

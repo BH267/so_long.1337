@@ -53,7 +53,6 @@ char	**hb_mtrcpy(char **mtr);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
 int		ft_free(char **s, ssize_t i);
-void	ft_rputstr(char *s, char **map);
 
 // parsing functions
 char	**openmap(char *m);
@@ -71,5 +70,9 @@ void	dispwind(t_mlx *mlx);
 int	move(int key, void *prm);
 void	putimges(t_mlx *mlx, int x, int y);
 t_cord	findplayer(char **map);
+
+// exit function
+void	wexit(t_mlx *mlx, char *s, int f);
+void	ft_rputstr(char *s, char **map, int f);
 
 #endif

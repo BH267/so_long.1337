@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: habenydi <habenydi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 09:30:38 by habenydi          #+#    #+#             */
-/*   Updated: 2025/02/13 09:31:10 by habenydi         ###   ########.fr       */
+/*   Created: 2025/02/18 16:28:22 by habenydi          #+#    #+#             */
+/*   Updated: 2025/02/18 16:33:52 by habenydi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-void	ft_rputstr(char *s, char **map)
+void	ft_rputstr(char *s, char **map, int f)
 {
 	int	i;
 
@@ -24,5 +24,13 @@ void	ft_rputstr(char *s, char **map)
 	}
 	write(2, "\n", 1);
 	hb_mtrfree(map);
-	exit(1);
+	exit(f);
+}
+void	wexit(t_mlx *mlx, char *str, int f)
+{
+	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+	mlx_destroy_display(mlx->mlx);
+	free(mlx->mlx);
+	free(mlx->pec);
+	ft_rputstr(str, mlx->map, f);
 }

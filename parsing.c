@@ -20,7 +20,7 @@ int	ft_msize(char *map)
 
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		ft_rputstr("open failed", NULL);
+		ft_rputstr("open failed", NULL, 1);
 	s = get_next_line(fd);
 	i = 0;
 	while (s)
@@ -47,7 +47,7 @@ void	ft_checkway(char **cmap, char **map)
 			if (cmap[i][j] == 'C')
 			{
 				hb_mtrfree(cmap);
-				ft_rputstr("invalid map", map);
+				ft_rputstr("invalid map", map, 1);
 			}
 			j++;
 		}

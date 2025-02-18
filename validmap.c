@@ -22,7 +22,7 @@ void	ft_isvalid(char **map)
 	while (map[i])
 	{
 		if (size != ft_strlen(map[i]))
-			ft_rputstr("invalid map", map);
+			ft_rputstr("invalid map", map, 1);
 		i++;
 	}
 }
@@ -34,19 +34,19 @@ void	ft_checkwall(char **map, int size)
 
 	len = (int)ft_strlen(map[0]) - 1;
 	if (len > 1920 / 64 || size > 1080 / 64)
-		ft_rputstr("invalid map", map);
+		ft_rputstr("invalid map", map, 1);
 	i = 0;
 	while (map[0][i] != '\n')
 	{
 		if (map[size][i] != '1' || map[0][i] != '1')
-			ft_rputstr("invalid map", map);
+			ft_rputstr("invalid map", map, 1);
 		i++;
 	}
 	i = 1;
 	while (i < size - 2)
 	{
 		if (map[i][0] != '1' || map[i][len - 1] != '1')
-			ft_rputstr("invalid map", map);
+			ft_rputstr("invalid map", map, 1);
 		i++;
 	}
 }
@@ -65,7 +65,7 @@ void	checkperline(char **map, char *line, t_pec *pec)
 		else if (line[j] == 'P')
 			pec->player++;
 		else if (line[j] != '1' && line[j] != '0' && line[j] != '\n')
-			ft_rputstr("invalid map", map);
+			ft_rputstr("invalid map", map, 1);
 		j++;
 	}
 }
@@ -82,6 +82,6 @@ int	ft_checkpce(char **map)
 	while (map[i])
 		checkperline(map, map[i++], &pec);
 	if (pec.exit != 1 || pec.player != 1 || pec.coin < 1)
-		ft_rputstr("invalid map", map);
+		ft_rputstr("invalid map", map, 1);
 	return (pec.coin);
 }
