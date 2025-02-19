@@ -61,12 +61,12 @@ t_mlx	ft_parsing(char *m)
 	char	**cmap;
 	t_cord	p;
 
-	mlx.pec = malloc(sizeof(t_pec));
 	mlx.map = openmap(m);
 	mlx.size.mx = (ft_strlen(mlx.map[1]) - 1) * 64;
 	mlx.size.my = ft_msize(m) * 64;
 	ft_isvalid(mlx.map);
 	ft_checkwall(mlx.map, ft_msize(m) - 1);
+	mlx.pec = malloc(sizeof(t_pec));
 	mlx.pec->coin = ft_checkpce(mlx.map);
 	cmap = hb_mtrcpy(mlx.map);
 	p = findplayer(mlx.map);

@@ -60,19 +60,17 @@ char	**openmap(char *m)
 	fd = open(m, O_RDONLY);
 	if (fd == -1)
 		ft_rputstr("open failed", NULL, 1);
-	i = 0;
 	map = (char **)malloc(sizeof(char *) * (ft_msize(m) + 1));
 	if (!map)
 		ft_rputstr("malloc failed", NULL, 1);
 	s = get_next_line(fd);
-	//if (!s)
-	//	ft_rputstr("", NULL, 1);
+	if (!s)
+		ft_rputstr("", map, 1);
+	i = 0;
 	while (s)
 	{
 		map[i] = s;
 		s = get_next_line(fd);
-	//	if (!s)
-	//		ft_rputstr("", NULL, 1);
 		i++;
 	}
 	map[i] = NULL;
