@@ -33,8 +33,8 @@ void	ft_checkwall(char **map, int size)
 	int	len;
 
 	len = (int)ft_strlen(map[0]) - 1;
-	if (len > 1920 / 64 || size > 1080 / 64)
-		ft_rputstr("invalid map", map, 1);
+//	if (len > 1920 / 64 || size > 1080 / 64)
+//		ft_rputstr("invalid map", map, 1);
 	i = 0;
 	while (map[0][i] != '\n')
 	{
