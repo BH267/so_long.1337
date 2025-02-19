@@ -28,6 +28,7 @@ void	ft_rputstr(char *s, char **map, int f)
 	hb_mtrfree(map);
 	exit(f);
 }
+
 void	wexit(t_mlx *mlx, char *str, int f)
 {
 	mlx_destroy_window(mlx->mlx, mlx->mlx_win);

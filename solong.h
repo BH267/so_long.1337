@@ -60,14 +60,14 @@ int		ft_msize(char *map);
 t_mlx	ft_parsing(char *m);
 void	ft_isvalid(char **map);
 t_cord	findplayer(char **map);
-int	ft_checkpce(char **map);
+int		ft_checkpce(char **map);
 void	ft_floodfill(char **map, int x, int y);
 void	ft_checkwall(char **map, int size);
 
 // game function
 void	putmap(t_mlx *mlx);
 void	dispwind(t_mlx *mlx);
-int	move(int key, void *prm);
+int		move(int key, void *prm);
 void	putimges(t_mlx *mlx, int x, int y);
 t_cord	findplayer(char **map);
 

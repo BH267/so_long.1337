@@ -66,7 +66,7 @@ void	dispwind(t_mlx *mlx)
 	if (!mlx->mlx)
 		return ;
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->size.mx,
-			       mlx->size.my, "awdii");
+			mlx->size.my, "awdii");
 	if (!mlx->mlx_win)
 		return ;
 	putmap(mlx);

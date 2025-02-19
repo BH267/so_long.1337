@@ -37,7 +37,6 @@ void	movel(t_mlx *mlx)
 
 	p = findplayer(mlx->map);
 	if (mlx->map[p.y][p.x - 1] != '1')
-		//&& mlx->map[p.y][p.x - 1] != 'E')
 	{
 		if (mlx->map[p.y][p.x - 1] == 'C')
 			(mlx->pec->coin)--;
@@ -57,8 +56,6 @@ void	moved(t_mlx *mlx)
 
 	p = findplayer(mlx->map);
 	if (mlx->map[p.y + 1][p.x] != '1')
-		//&& mlx->map[p.y + 1][p.x] != 'E')
-
 	{
 		if (mlx->map[p.y + 1][p.x] == 'C')
 			(mlx->pec->coin)--;
@@ -78,7 +75,6 @@ void	moveu(t_mlx *mlx)
 
 	p = findplayer(mlx->map);
 	if (mlx->map[p.y - 1][p.x] != '1')
-//		&& mlx->map[p.y - 1][p.x] != 'E')
 	{
 		if (mlx->map[p.y - 1][p.x] == 'C')
 			(mlx->pec->coin)--;
@@ -94,7 +90,7 @@ void	moveu(t_mlx *mlx)
 
 int	move(int key, void *prm)
 {
-	t_mlx *mlx;
+	t_mlx	*mlx;
 
 	mlx = (t_mlx *)prm;
 	if (key == 100)
