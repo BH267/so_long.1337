@@ -65,10 +65,14 @@ char	**openmap(char *m)
 	if (!map)
 		ft_rputstr("malloc failed", NULL, 1);
 	s = get_next_line(fd);
+	//if (!s)
+	//	ft_rputstr("", NULL, 1);
 	while (s)
 	{
 		map[i] = s;
 		s = get_next_line(fd);
+	//	if (!s)
+	//		ft_rputstr("", NULL, 1);
 		i++;
 	}
 	map[i] = NULL;

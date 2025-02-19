@@ -17,12 +17,15 @@ void	ft_rputstr(char *s, char **map, int f)
 	int	i;
 
 	i = 0;
+	if (f)
+		write(2, "Error\n", 6);
 	while (s[i])
 	{
 		write(2, s + i, 1);
 		i++;
 	}
 	write(2, "\n", 1);
+	get_next_line(-2);
 	hb_mtrfree(map);
 	exit(f);
 }
