@@ -101,7 +101,7 @@ int	move(int key, void *prm)
 		moved(mlx);
 	if (key == 97)
 		movel(mlx);
-	if (key == 65307)
+	if (key == 65307 || key == 17)
 		wexit(mlx, "EXITED", 0);
 	return (0);
 }

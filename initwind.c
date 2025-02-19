@@ -60,6 +60,12 @@ void	putmap(t_mlx *mlx)
 	}
 }
 
+int	closewind(void *mlx)
+{
+	wexit(mlx, "EXITED", 0);
+	return (0);
+}
+
 void	dispwind(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
@@ -71,5 +77,6 @@ void	dispwind(t_mlx *mlx)
 		return ;
 	putmap(mlx);
 	mlx_key_hook(mlx->mlx_win, move, mlx);
+	mlx_hook(mlx->mlx_win, 17, 0, closewind, mlx);
 	mlx_loop(mlx->mlx);
 }
