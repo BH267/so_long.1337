@@ -25,7 +25,6 @@ void	ft_rputstr(char *s, char **map, int f)
 		i++;
 	}
 	write(2, "\n", 1);
-	get_next_line(-2);
 	hb_mtrfree(map);
 	exit(f);
 }
