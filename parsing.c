@@ -62,7 +62,7 @@ t_mlx	ft_parsing(char *m)
 	t_cord	p;
 
 	mlx.map = openmap(m);
-	mlx.size.mx = (ft_strlen(mlx.map[1]) - 1) * 64;
+	mlx.size.mx = (ft_strlen(mlx.map[0]) - 1) * 64;
 	mlx.size.my = ft_msize(m) * 64;
 	ft_isvalid(mlx.map);
 	ft_checkwall(mlx.map, ft_msize(m) - 1);
