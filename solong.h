@@ -49,12 +49,13 @@ typedef struct s_mlx
 }	t_mlx;
 
 // aditional functions
+char	*ft_itoa(int n);
 void	hb_mtrfree(char **mtr);
 char	**hb_mtrcpy(char **mtr);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
+void	ft_putstr(char *str, int nl);
 int		ft_free(char **s, ssize_t i);
-char	*ft_itoa(int n);
 
 // parsing functions
 char	**openmap(char *m);

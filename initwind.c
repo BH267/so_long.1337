@@ -48,21 +48,23 @@ void	putmap(t_mlx *mlx)
 	int	i;
 	char	*moves;
 
+	moves = ft_itoa(mlx->count);
+	ft_putstr("==| moves :", 0);
+	ft_putstr(moves, 1);
 	i = 0;
 	while (i < mlx->size.my)
 	{
 		j = 0;
 		while (j < mlx->size.mx)
 		{
-			moves = ft_itoa(mlx->count);
 			mlx_string_put(mlx->mlx, mlx->mlx_win, 15, 30, 0, "==| moves :");
 			mlx_string_put(mlx->mlx, mlx->mlx_win, 85, 30, 0, moves);
-			free(moves);
 			putimges(mlx, j, i);
 			j += 64;
 		}
 		i += 64;
 	}
+	free(moves);
 }
 
 int	closewind(void *mlx)
