@@ -46,6 +46,7 @@ void	putmap(t_mlx *mlx)
 {
 	int	j;
 	int	i;
+	char	*moves;
 
 	i = 0;
 	while (i < mlx->size.my)
@@ -53,6 +54,10 @@ void	putmap(t_mlx *mlx)
 		j = 0;
 		while (j < mlx->size.mx)
 		{
+			moves = ft_itoa(mlx->count);
+			mlx_string_put(mlx->mlx, mlx->mlx_win, 15, 30, 0, "==| moves :");
+			mlx_string_put(mlx->mlx, mlx->mlx_win, 85, 30, 0, moves);
+			free(moves);
 			putimges(mlx, j, i);
 			j += 64;
 		}
@@ -71,6 +76,7 @@ void	dispwind(t_mlx *mlx)
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx)
 		return ;
+	mlx->count = 0;
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->size.mx,
 			mlx->size.my, "awdii");
 	if (!mlx->mlx_win)

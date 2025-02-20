@@ -45,6 +45,7 @@ typedef struct s_mlx
 	void	*mlx_win;
 	void	*pimg;
 	t_pec	*pec;
+	int	count;
 }	t_mlx;
 
 // aditional functions
@@ -53,6 +54,7 @@ char	**hb_mtrcpy(char **mtr);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
 int		ft_free(char **s, ssize_t i);
+char	*ft_itoa(int n);
 
 // parsing functions
 char	**openmap(char *m);
