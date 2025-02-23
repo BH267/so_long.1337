@@ -45,7 +45,8 @@ typedef struct s_mlx
 	void	*mlx_win;
 	void	*pimg;
 	t_pec	*pec;
-	int	count;
+	int		count;
+	char	**coin;
 }	t_mlx;
 
 // aditional functions
@@ -55,24 +56,32 @@ char	**hb_mtrcpy(char **mtr);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
 void	ft_putstr(char *str, int nl);
+void	ft_bzero(void *ptr, int len);
 int		ft_free(char **s, ssize_t i);
 
 // parsing functions
 char	**openmap(char *m);
-int		ft_msize(char *map);
 t_mlx	ft_parsing(char *m);
 void	ft_isvalid(char **map);
 t_cord	findplayer(char **map);
+int		ft_msize(char *map);
 int		ft_checkpce(char **map);
-void	ft_floodfill(char **map, int x, int y);
 void	ft_checkwall(char **map, int size);
+void	ft_floodfill(char **map, int x, int y);
 
 // game function
+int		doara(t_mlx *mlx);
+void	coins(t_mlx *mlx);
 void	putmap(t_mlx *mlx);
 void	dispwind(t_mlx *mlx);
+void	fillcoin(t_mlx *mlx);
+int		findcoins(t_mlx *mlx);
+t_cord	findplayer(char **map);
+int		putcoins(t_mlx *mlx);
 int		move(int key, void *prm);
 void	putimges(t_mlx *mlx, int x, int y);
-t_cord	findplayer(char **map);
+void	putimg(char *path, t_mlx *mlx, int x, int y);
+int		putcoin(t_mlx *mlx);
 
 // exit function
 void	wexit(t_mlx *mlx, char *s, int f);

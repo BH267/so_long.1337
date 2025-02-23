@@ -1,6 +1,6 @@
 SRC = parsing.c gnl/get_next_line.c gnl/get_next_line_utils.c main.c \
       ft_itoa.c hb_mtr.c validmap.c validway.c initwind.c moves.c \
-      ft_exit.c ft_putstr.c
+      ft_exit.c ft_putstr.c coin.c
 OBJ = $(SRC:.c=.o)
 
 CC = cc
