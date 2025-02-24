@@ -72,7 +72,7 @@ t_mlx	ft_parsing(char *m)
 	mlx.pec = malloc(sizeof(t_pec));
 	mlx.pec->coin = ft_checkpce(&mlx);
 	cmap = hb_mtrcpy(mlx.map);
-	p = findplayer(mlx.map);
+	p = findplayer(mlx.map, 'P');
 	ft_floodfill(cmap, p.x, p.y);
 	ft_checkway(cmap, &mlx);
   enemygen(&mlx);

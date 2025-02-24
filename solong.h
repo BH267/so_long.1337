@@ -66,7 +66,7 @@ int		ft_free(char **s, ssize_t i);
 char	**openmap(char *m);
 t_mlx	ft_parsing(char *m);
 void	ft_isvalid(char **map, t_mlx *mlx);
-t_cord	findplayer(char **map);
+t_cord	findplayer(char **map, char c);
 int		ft_msize(char *map);
 int		ft_checkpce(t_mlx *mlx);
 void	ft_checkwall(char **map, int size, t_mlx *mlx);
@@ -74,12 +74,14 @@ void	ft_floodfill(char **map, int x, int y);
 
 // game function
 int		doara(t_mlx *mlx);
+int		doara2(t_mlx *mlx);
 void	coins(t_mlx *mlx);
 void	putmap(t_mlx *mlx);
 void	dispwind(t_mlx *mlx);
 void	fillcoin(t_mlx *mlx);
+void	fillenemy(t_mlx *mlx);
 int		findcoins(t_mlx *mlx);
-t_cord	findplayer(char **map);
+//t_cord	findplayer(char **map, char c);
 int		putcoins(t_mlx *mlx);
 int		move(int key, void *prm);
 void	putimges(t_mlx *mlx, int x, int y);

@@ -12,7 +12,7 @@
 
 #include "solong.h"
 
-t_cord	findplayer(char **map)
+t_cord	findplayer(char **map, char c)
 {
 	int		i;
 	int		j;
@@ -26,7 +26,7 @@ t_cord	findplayer(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'P')
+			if (map[i][j] == c)
 			{
 				player.y = i;
 				player.x = j;

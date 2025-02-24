@@ -56,10 +56,10 @@ void	putimges(t_mlx *mlx, int x, int y)
 		putimg("textures/closed_door.xpm", mlx, x, y);
 	else if (mlx->map[y / 64][x / 64] == 'E' && !(mlx->pec->coin))
 		putimg("textures/opened_door.xpm", mlx, x, y);
-  else if (mlx->map[y / 64][x / 64] == 'X')
-		putimg("textures/enemy/fly0.xpm", mlx, x, y);
 	else
 		putimg("textures/floor.xpm", mlx, x, y);
+ // else if (mlx->map[y / 64][x / 64] == 'X')
+	//	mlx_loop_hook(mlx->mlx, doara2, mlx);
 }
 
 void	putmap(t_mlx *mlx)
@@ -105,6 +105,7 @@ void	dispwind(t_mlx *mlx)
 		return ;
   ft_path(mlx);
 	fillcoin(mlx);
+	fillenemy(mlx);
 	putmap(mlx);
 	mlx_key_hook(mlx->mlx_win, move, mlx);
 	mlx_hook(mlx->mlx_win, 17, 0, closewind, mlx);

@@ -39,21 +39,43 @@ void	fillenemy(t_mlx *mlx)
 {
 	int	i;
 
-	mlx->coin = (char **)malloc(sizeof(char *) * 8);
-	if (!mlx->coin)
+	mlx->enemy = (char **)malloc(sizeof(char *) * 8);
+	if (!mlx->enemy)
 		wexit(mlx, "malloc failed", 1);
-	/*mlx->coin[0] = ft_strjoin(mlx->path, "textures/coin/coin1.xpm");*/
-	mlx->coin[0] = ft_strdup("textures/coin/coin1.xpm");
+	mlx->enemy[0] = ft_strdup("textures/enemy/fly1.xpm");
 	i = 1;
-	while (i < 7)
+	while (i < 4)
 	{
-		mlx->coin[i] = ft_strdup(mlx->coin[0]);
-		mlx->coin[i][ft_strlen(mlx->coin[0]) - 5] += i;
+		mlx->enemy[i] = ft_strdup(mlx->enemy[0]);
+		mlx->enemy[i][ft_strlen(mlx->enemy[0]) - 5] += i;
 		i++;
 	}
-	mlx->coin[i] = NULL;
+	mlx->enemy[i] = NULL;
 }
 
+void  emove(t_mlx *mlx, char d, t_cord e)
+{
+  while (mlx->map[e.y][e.x + 1] == '1' 
+    || mlx->map[e.y][e.x + 1] == 'C')
+    {
+    (void)d;
+  }
+}
+
+void  moveye(t_mlx *mlx)
+{
+  t_cord  p;
+  t_cord  x;
+
+  p = findplayer(mlx->map, 'P');
+  x = findplayer(mlx->map, 'X');
+  if (x.x == p.x)
+    emove(mlx, 'y', x);
+  else if (x.y == p.y)
+    emove(mlx, 'x', x);
+}
+
+/*
 int	findenemy(t_mlx *mlx)
 {
 	int			i;
@@ -73,9 +95,19 @@ int	findenemy(t_mlx *mlx)
 		}
 		i++;
 	}
-	if (frame < 6)
+	if (frame < 3)
 		frame++;
 	else
 		frame = 0;
 	return (0);
 }
+
+int	doara2(t_mlx *mlx)
+{
+	static int	cnt;
+
+	if (cnt % 4999 == 0)
+		findenemy(mlx);
+	cnt++;
+	return (0);
+}*/

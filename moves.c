@@ -16,7 +16,7 @@ void	mover(t_mlx *mlx)
 {
 	t_cord	p;
 
-	p = findplayer(mlx->map);
+	p = findplayer(mlx->map, 'P');
 	if (mlx->map[p.y][p.x + 1] != '1')
 	{
 		mlx->count++;
@@ -38,7 +38,7 @@ void	movel(t_mlx *mlx)
 {
 	t_cord	p;
 
-	p = findplayer(mlx->map);
+	p = findplayer(mlx->map, 'P');
 	if (mlx->map[p.y][p.x - 1] != '1')
 	{
 		mlx->count++;
@@ -60,7 +60,7 @@ void	moved(t_mlx *mlx)
 {
 	t_cord	p;
 
-	p = findplayer(mlx->map);
+	p = findplayer(mlx->map, 'P');
 	if (mlx->map[p.y + 1][p.x] != '1')
 	{
 		mlx->count++;
@@ -82,7 +82,7 @@ void	moveu(t_mlx *mlx)
 {
 	t_cord	p;
 
-	p = findplayer(mlx->map);
+	p = findplayer(mlx->map, 'P');
 	if (mlx->map[p.y - 1][p.x] != '1')
 	{
 		mlx->count++;
