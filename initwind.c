@@ -12,6 +12,22 @@
 
 #include "solong.h"
 
+
+void  ft_path(t_mlx *mlx)
+{
+  int i;
+  int len;
+
+  i = 0;
+  while (mlx->path[i])
+  {
+    if (mlx->path[i] == '/')
+      len = i + 1;
+    i++;
+  }
+  mlx->path = ft_gsubstr(mlx->path, len);
+}
+
 void	putimg(char *path, t_mlx *mlx, int x, int y)
 {
 	int	w;
@@ -19,27 +35,31 @@ void	putimg(char *path, t_mlx *mlx, int x, int y)
 
 	h = 64;
 	w = 64;
+  path = ft_strjoin(mlx->path, path);
 	mlx->pimg = mlx_xpm_file_to_image(mlx->mlx, path, &w, &h);
 	if (!mlx->pimg)
 		wexit(mlx, "xpm_file_to_image failed", 1);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->pimg, x, y);
+  free(path);
 	mlx_destroy_image(mlx->mlx, mlx->pimg);
 }
 
 void	putimges(t_mlx *mlx, int x, int y)
 {
 	if (mlx->map[y / 64][x / 64] == '1')
-		putimg("./textures/wall.xpm", mlx, x, y);
+		putimg("textures/wall.xpm", mlx, x, y);
 	else if (mlx->map[y / 64][x / 64] == 'P')
-		putimg("./textures/hero1.xpm", mlx, x, y);
+		putimg("textures/hero1.xpm", mlx, x, y);
 	else if (mlx->map[y / 64][x / 64] == 'C')
 		mlx_loop_hook(mlx->mlx, doara, mlx);
 	else if (mlx->map[y / 64][x / 64] == 'E' && (mlx->pec->coin))
-		putimg("./textures/closed_door.xpm", mlx, x, y);
+		putimg("textures/closed_door.xpm", mlx, x, y);
 	else if (mlx->map[y / 64][x / 64] == 'E' && !(mlx->pec->coin))
-		putimg("./textures/opened_door.xpm", mlx, x, y);
+		putimg("textures/opened_door.xpm", mlx, x, y);
+  else if (mlx->map[y / 64][x / 64] == 'X')
+		putimg("textures/enemy/fly0.xpm", mlx, x, y);
 	else
-		putimg("./textures/floor.xpm", mlx, x, y);
+		putimg("textures/floor.xpm", mlx, x, y);
 }
 
 void	putmap(t_mlx *mlx)
@@ -83,6 +103,7 @@ void	dispwind(t_mlx *mlx)
 			mlx->size.my, "awdii");
 	if (!mlx->mlx_win)
 		return ;
+  ft_path(mlx);
 	fillcoin(mlx);
 	putmap(mlx);
 	mlx_key_hook(mlx->mlx_win, move, mlx);

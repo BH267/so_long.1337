@@ -1,18 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coin.c                                             :+:      :+:    :+:   */
+/*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: habenydi <habenydi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 10:19:04 by habenydi          #+#    #+#             */
-/*   Updated: 2025/02/23 10:19:18 by habenydi         ###   ########.fr       */
+/*   Created: 2025/02/23 17:25:43 by habenydi          #+#    #+#             */
+/*   Updated: 2025/02/23 17:25:55 by habenydi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+# include "solong.h"
 
-void	fillcoin(t_mlx *mlx)
+int numgen(int max)
+{
+  srand(time(NULL));
+  return (1 + rand() % max);
+}
+
+void  enemygen(t_mlx *mlx)
+{
+  int y;
+  int x;
+
+  while (1)
+  {
+    y = numgen((mlx->size.my / 64) - 1);
+    x = numgen((mlx->size.mx / 64) - 1);
+    if (mlx->map[y][x] == '0')
+    {
+      mlx->map[y][x] = 'X';
+      break;
+    }
+  } 
+}
+
+void	fillenemy(t_mlx *mlx)
 {
 	int	i;
 
@@ -31,7 +54,7 @@ void	fillcoin(t_mlx *mlx)
 	mlx->coin[i] = NULL;
 }
 
-int	findcoins(t_mlx *mlx)
+int	findenemy(t_mlx *mlx)
 {
 	int			i;
 	int			j;
@@ -44,8 +67,8 @@ int	findcoins(t_mlx *mlx)
 		j = 0;
 		while (mlx->map[i][j])
 		{
-			if (mlx->map[i][j] == 'C')
-				putimg(mlx->coin[frame], mlx, j * 64, i * 64);
+			if (mlx->map[i][j] == 'X')
+				putimg(mlx->enemy[frame], mlx, j * 64, i * 64);
 			j++;
 		}
 		i++;
@@ -54,15 +77,5 @@ int	findcoins(t_mlx *mlx)
 		frame++;
 	else
 		frame = 0;
-	return (0);
-}
-
-int	doara(t_mlx *mlx)
-{
-	static int	cnt;
-
-	if (cnt % 4999 == 0)
-		findcoins(mlx);
-	cnt++;
 	return (0);
 }

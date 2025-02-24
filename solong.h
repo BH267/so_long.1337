@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
+# include <time.h>
 # include <mlx.h>
 # include "gnl/get_next_line.h"
 
@@ -47,6 +48,8 @@ typedef struct s_mlx
 	t_pec	*pec;
 	int		count;
 	char	**coin;
+  char  **enemy;
+  char  *path;
 }	t_mlx;
 
 // aditional functions
@@ -62,11 +65,11 @@ int		ft_free(char **s, ssize_t i);
 // parsing functions
 char	**openmap(char *m);
 t_mlx	ft_parsing(char *m);
-void	ft_isvalid(char **map);
+void	ft_isvalid(char **map, t_mlx *mlx);
 t_cord	findplayer(char **map);
 int		ft_msize(char *map);
-int		ft_checkpce(char **map);
-void	ft_checkwall(char **map, int size);
+int		ft_checkpce(t_mlx *mlx);
+void	ft_checkwall(char **map, int size, t_mlx *mlx);
 void	ft_floodfill(char **map, int x, int y);
 
 // game function
@@ -83,8 +86,11 @@ void	putimges(t_mlx *mlx, int x, int y);
 void	putimg(char *path, t_mlx *mlx, int x, int y);
 int		putcoin(t_mlx *mlx);
 
+// enemy function
+void enemygen(t_mlx *mlx);
+
 // exit function
 void	wexit(t_mlx *mlx, char *s, int f);
-void	ft_rputstr(char *s, char **map, int f);
+void	ft_rputstr(char *s, t_mlx *mlx, int f);
 
 #endif

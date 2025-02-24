@@ -33,7 +33,7 @@ int	ft_msize(char *map)
 	return (i);
 }
 
-void	ft_checkway(char **cmap, char **map)
+void	ft_checkway(char **cmap, t_mlx *mlx)
 {
 	int	i;
 	int	j;
@@ -47,7 +47,7 @@ void	ft_checkway(char **cmap, char **map)
 			if (cmap[i][j] == 'C')
 			{
 				hb_mtrfree(cmap);
-				ft_rputstr("invalid map", map, 1);
+				ft_rputstr("invalid map", mlx, 1);
 			}
 			j++;
 		}
@@ -61,19 +61,21 @@ t_mlx	ft_parsing(char *m)
 	char	**cmap;
 	t_cord	p;
 
+  mlx.pec = NULL;
 	mlx.map = openmap(m);
 	mlx.size.mx = (ft_strlen(mlx.map[1]) - 1) * 64;
 	mlx.size.my = ft_msize(m) * 64;
 	if (mlx.size.my == 64)
-		ft_rputstr("invalid map", mlx.map, 1);
-	ft_isvalid(mlx.map);
-	ft_checkwall(mlx.map, ft_msize(m) - 1);
+		ft_rputstr("invalid map", &mlx, 1);
+	ft_isvalid(mlx.map, &mlx);
+	ft_checkwall(mlx.map, ft_msize(m) - 1, &mlx);
 	mlx.pec = malloc(sizeof(t_pec));
-	mlx.pec->coin = ft_checkpce(mlx.map);
+	mlx.pec->coin = ft_checkpce(&mlx);
 	cmap = hb_mtrcpy(mlx.map);
 	p = findplayer(mlx.map);
 	ft_floodfill(cmap, p.x, p.y);
-	ft_checkway(cmap, mlx.map);
+	ft_checkway(cmap, &mlx);
+  enemygen(&mlx);
 	hb_mtrfree(cmap);
 	return (mlx);
 }

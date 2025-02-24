@@ -12,7 +12,7 @@
 
 #include "solong.h"
 
-void	ft_isvalid(char **map)
+void	ft_isvalid(char **map, t_mlx *mlx)
 {
 	size_t	size;
 	int		i;
@@ -22,12 +22,12 @@ void	ft_isvalid(char **map)
 	while (map[i])
 	{
 		if (size != ft_strlen(map[i]))
-			ft_rputstr("invalid map", map, 1);
+			ft_rputstr("invalid map", mlx, 1);
 		i++;
 	}
 }
 
-void	ft_checkwall(char **map, int size)
+void	ft_checkwall(char **map, int size, t_mlx *mlx)
 {
 	int	i;
 	int	len;
@@ -37,19 +37,19 @@ void	ft_checkwall(char **map, int size)
 	while (map[0][i] != '\n')
 	{
 		if (map[size][i] != '1' || map[0][i] != '1')
-			ft_rputstr("invalid map", map, 1);
+			ft_rputstr("invalid map", mlx, 1);
 		i++;
 	}
 	i = 1;
 	while (i < size - 2)
 	{
 		if (map[i][0] != '1' || map[i][len - 1] != '1')
-			ft_rputstr("invalid map", map, 1);
+			ft_rputstr("invalid map", mlx, 1);
 		i++;
 	}
 }
 
-void	checkperline(char **map, char *line, t_pec *pec)
+void	checkperline(t_mlx *mlx, char *line, t_pec *pec)
 {
 	int	j;
 
@@ -62,15 +62,13 @@ void	checkperline(char **map, char *line, t_pec *pec)
 			pec->coin++;
 		else if (line[j] == 'P')
 			pec->player++;
-		else if (line[j] == 'X')
-			pec->enemy++;
 		else if (line[j] != '1' && line[j] != '0' && line[j] != '\n')
-			ft_rputstr("invalid map", map, 1);
+			ft_rputstr("invalid map", mlx, 1);
 		j++;
 	}
 }
 
-int	ft_checkpce(char **map)
+int	ft_checkpce(t_mlx *mlx)
 {
 	int		i;
 	t_pec	pec;
@@ -80,9 +78,9 @@ int	ft_checkpce(char **map)
 	pec.coin = 0;
 	pec.player = 0;
 	pec.enemy = 0;
-	while (map[i])
-		checkperline(map, map[i++], &pec);
+	while (mlx->map[i])
+		checkperline(mlx, mlx->map[i++], &pec);
 	if (pec.exit != 1 || pec.player != 1 || pec.coin < 1)
-		ft_rputstr("invalid map", map, 1);
+		ft_rputstr("invalid map", mlx, 1);
 	return (pec.coin);
 }

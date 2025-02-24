@@ -43,5 +43,6 @@ int	main(int ac, char **av)
 		return (1);
 	validpath(av[1]);
 	mlx = ft_parsing(av[1]);
+  mlx.path = av[0];
 	dispwind(&mlx);
 }

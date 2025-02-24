@@ -26,6 +26,8 @@ void	mover(t_mlx *mlx)
 			wexit(mlx, "YOU WIN", 0);
 		else if (mlx->map[p.y][p.x + 1] == 'E' && mlx->pec->coin)
 			return ;
+    if (mlx->map[p.y][p.x + 1] == 'X')
+      wexit(mlx, "YOU LOSE", 0);
 		mlx->map[p.y][p.x] = '0';
 		mlx->map[p.y][p.x + 1] = 'P';
 		putmap(mlx);
@@ -46,6 +48,8 @@ void	movel(t_mlx *mlx)
 			wexit(mlx, "YOU WIN", 0);
 		else if (mlx->map[p.y][p.x - 1] == 'E' && mlx->pec->coin)
 			return ;
+    if (mlx->map[p.y][p.x - 1] == 'X')
+      wexit(mlx, "YOU LOSE", 0);
 		mlx->map[p.y][p.x] = '0';
 		mlx->map[p.y][p.x - 1] = 'P';
 		putmap(mlx);
@@ -66,6 +70,8 @@ void	moved(t_mlx *mlx)
 			wexit(mlx, "YOU WIN", 0);
 		else if (mlx->map[p.y + 1][p.x] == 'E' && mlx->pec->coin)
 			return ;
+    if (mlx->map[p.y + 1][p.x] == 'X')
+      wexit(mlx, "YOU LOSE", 0);
 		mlx->map[p.y][p.x] = '0';
 		mlx->map[p.y + 1][p.x] = 'P';
 		putmap(mlx);
@@ -86,6 +92,8 @@ void	moveu(t_mlx *mlx)
 			wexit(mlx, "YOU WIN", 0);
 		else if (mlx->map[p.y - 1][p.x] == 'E' && mlx->pec->coin)
 			return ;
+    if (mlx->map[p.y - 1][p.x] == 'X')
+      wexit(mlx, "YOU LOSE", 0);
 		mlx->map[p.y][p.x] = '0';
 		mlx->map[p.y - 1][p.x] = 'P';
 		putmap(mlx);

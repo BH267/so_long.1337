@@ -12,7 +12,7 @@
 
 #include "solong.h"
 
-void	ft_rputstr(char *s, char **map, int f)
+void	ft_rputstr(char *s, t_mlx *mlx, int f)
 {
 	int	i;
 
@@ -25,7 +25,11 @@ void	ft_rputstr(char *s, char **map, int f)
 		i++;
 	}
 	write(2, "\n", 1);
-	hb_mtrfree(map);
+  if (mlx)
+  {
+    free(mlx->pec);
+	  hb_mtrfree(mlx->map);
+  }
 	exit(f);
 }
 
@@ -35,6 +39,6 @@ void	wexit(t_mlx *mlx, char *str, int f)
 	mlx_destroy_display(mlx->mlx);
 	hb_mtrfree(mlx->coin);
 	free(mlx->mlx);
-	free(mlx->pec);
-	ft_rputstr(str, mlx->map, f);
+  free(mlx->path);
+	ft_rputstr(str, mlx, f);
 }

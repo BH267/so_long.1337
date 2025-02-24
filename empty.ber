@@ -1,20 +1,5 @@
-11111111111111111111
-
-int	putcoin(t_mlx *mlx)
-{
-	int	i;
-	static int	*arr;
-	static int	idx;
-
-	arr = (int *)malloc(sizeof(int) * mlx->pec.coin * 2);
-	arr[idx] = mlx->x;
-	arr[idx + 1] = mlx->y;
-	i = 0;
-	while (mlx->coin[i])
-	{
-		putimg(mlx->coin[i], mlx, arr[idx], arr[idx + 1]);
-		i++;
-	}
-	idx += 2;
-	return (0);
-}
+111111111111111111111
+111111111110001111111
+11111111111CEP1111110
+111111111111111111111
+111111111111111111111
