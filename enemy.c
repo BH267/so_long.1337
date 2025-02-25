@@ -22,8 +22,10 @@ void  enemygen(t_mlx *mlx)
 {
   int y;
   int x;
+  int i;
 
-  while (1)
+  i = 0;
+  while (i++ < 1000000)
   {
     y = numgen((mlx->size.my / 64) - 1);
     x = numgen((mlx->size.mx / 64) - 1);
@@ -32,7 +34,9 @@ void  enemygen(t_mlx *mlx)
       mlx->map[y][x] = 'X';
       break;
     }
-  } 
+  }
+  if (i == 1000001)
+    ft_putstr("warning: no space for enemy", 1);
 }
 
 void	fillenemy(t_mlx *mlx)
