@@ -38,6 +38,7 @@ void	wexit(t_mlx *mlx, char *str, int f)
 	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 	mlx_destroy_display(mlx->mlx);
 	hb_mtrfree(mlx->coin);
+	hb_mtrfree(mlx->enemy);
 	free(mlx->mlx);
   free(mlx->path);
 	ft_rputstr(str, mlx, f);

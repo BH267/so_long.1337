@@ -90,6 +90,7 @@ int		putcoin(t_mlx *mlx);
 
 // enemy function
 void enemygen(t_mlx *mlx);
+int	findenemy(t_mlx *mlx);
 
 // exit function
 void	wexit(t_mlx *mlx, char *s, int f);

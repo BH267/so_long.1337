@@ -41,7 +41,7 @@ void	ft_checkwall(char **map, int size, t_mlx *mlx)
 		i++;
 	}
 	i = 1;
-	while (i < size - 2)
+	while (i < size)
 	{
 		if (map[i][0] != '1' || map[i][len - 1] != '1')
 			ft_rputstr("invalid map", mlx, 1);

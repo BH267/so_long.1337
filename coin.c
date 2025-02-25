@@ -19,7 +19,6 @@ void	fillcoin(t_mlx *mlx)
 	mlx->coin = (char **)malloc(sizeof(char *) * 8);
 	if (!mlx->coin)
 		wexit(mlx, "malloc failed", 1);
-	/*mlx->coin[0] = ft_strjoin(mlx->path, "textures/coin/coin1.xpm");*/
 	mlx->coin[0] = ft_strdup("textures/coin/coin1.xpm");
 	i = 1;
 	while (i < 7)
@@ -36,7 +35,6 @@ int	findcoins(t_mlx *mlx)
 	int			i;
 	int			j;
 	static int	frame;
-	static int	eframe;
 
 	j = 0;
 	i = 0;
@@ -47,8 +45,6 @@ int	findcoins(t_mlx *mlx)
 		{
 			if (mlx->map[i][j] == 'C')
 				putimg(mlx->coin[frame], mlx, j * 64, i * 64);
-			if (mlx->map[i][j] == 'X')
-				putimg(mlx->enemy[eframe], mlx, j * 64, i * 64);
 			j++;
 		}
 		i++;
@@ -57,10 +53,6 @@ int	findcoins(t_mlx *mlx)
 		frame++;
 	else
 		frame = 0;
-	if (eframe < 3)
-		eframe++;
-	else
-		eframe = 0;
 	return (0);
 }
 
@@ -69,7 +61,10 @@ int	doara(t_mlx *mlx)
 	static int	cnt;
 
 	if (cnt % 7001 == 0)
+  {
 		findcoins(mlx);
+		findenemy(mlx);
+  }
 	cnt++;
 	return (0);
 }

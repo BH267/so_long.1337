@@ -75,7 +75,7 @@ void  moveye(t_mlx *mlx)
     emove(mlx, 'x', x);
 }
 
-/*
+
 int	findenemy(t_mlx *mlx)
 {
 	int			i;
@@ -101,7 +101,7 @@ int	findenemy(t_mlx *mlx)
 		frame = 0;
 	return (0);
 }
-
+/*
 int	doara2(t_mlx *mlx)
 {
 	static int	cnt;
