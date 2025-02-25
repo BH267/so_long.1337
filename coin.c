@@ -62,8 +62,8 @@ int	doara(t_mlx *mlx)
 
 	if (cnt % 7001 == 0)
   {
-		findcoins(mlx);
 		findenemy(mlx);
+		findcoins(mlx);
   }
 	cnt++;
 	return (0);

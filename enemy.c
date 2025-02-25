@@ -55,10 +55,24 @@ void	fillenemy(t_mlx *mlx)
 
 void  emove(t_mlx *mlx, char d, t_cord e)
 {
-  while (mlx->map[e.y][e.x + 1] == '1' 
-    || mlx->map[e.y][e.x + 1] == 'C')
+  int gox = 0;
+  int goy = 0;
+
+  if (d == 'x')
+    gox = 1;
+  else 
+    goy = 1;
+  while (1)
+  {
+    if (mlx->map[e.y + goy][e.x + gox] == '1' 
+    || mlx->map[e.y + goy][e.x + gox] == 'C')
     {
-    (void)d;
+      goy *= -1;
+      gox *= -1;
+    }
+    mlx->map[e.y + goy][e.x + gox] = 'X';
+    mlx->map[e.y][e.x] = '0';
+    putmap(mlx);
   }
 }
 
@@ -72,6 +86,8 @@ void  moveye(t_mlx *mlx)
   if (x.x == p.x)
     emove(mlx, 'y', x);
   else if (x.y == p.y)
+    emove(mlx, 'x', x);
+  else 
     emove(mlx, 'x', x);
 }
 

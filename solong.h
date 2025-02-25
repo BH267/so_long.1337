@@ -95,5 +95,6 @@ int	findenemy(t_mlx *mlx);
 // exit function
 void	wexit(t_mlx *mlx, char *s, int f);
 void	ft_rputstr(char *s, t_mlx *mlx, int f);
+void  moveye(t_mlx *mlx);
 
 #endif

@@ -38,7 +38,10 @@ void	putimg(char *path, t_mlx *mlx, int x, int y)
   path = ft_strjoin(mlx->path, path);
 	mlx->pimg = mlx_xpm_file_to_image(mlx->mlx, path, &w, &h);
 	if (!mlx->pimg)
+  {
 		wexit(mlx, "xpm_file_to_image failed", 1);
+    free(path);
+  }
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->pimg, x, y);
   free(path);
 	mlx_destroy_image(mlx->mlx, mlx->pimg);
