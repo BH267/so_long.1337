@@ -61,8 +61,6 @@ void	putimges(t_mlx *mlx, int x, int y)
 		putimg("textures/opened_door.xpm", mlx, x, y);
 	else
 		putimg("textures/floor.xpm", mlx, x, y);
- // else if (mlx->map[y / 64][x / 64] == 'X')
-	//	mlx_loop_hook(mlx->mlx, doara2, mlx);
 }
 
 void	putmap(t_mlx *mlx)
@@ -70,10 +68,15 @@ void	putmap(t_mlx *mlx)
 	int		j;
 	int		i;
 	char	*moves;
+  static int   c;
 
 	moves = ft_itoa(mlx->count);
-	ft_putstr("==| moves :", 0);
-	ft_putstr(moves, 1);
+  if (c != mlx->count)
+  {
+	  ft_putstr("==| moves :", 0);
+	  ft_putstr(moves, 1);
+    c = mlx->count;
+  }
 	i = 0;
 	while (i < mlx->size.my)
 	{
@@ -106,6 +109,7 @@ void	dispwind(t_mlx *mlx)
 			mlx->size.my, "awdii");
 	if (!mlx->mlx_win)
 		return ;
+  mlx->go = 1;
   ft_path(mlx);
 	fillcoin(mlx);
 	fillenemy(mlx);

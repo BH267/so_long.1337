@@ -50,6 +50,7 @@ typedef struct s_mlx
 	char	**coin;
   char  **enemy;
   char  *path;
+  int   go;
 }	t_mlx;
 
 // aditional functions
@@ -91,6 +92,7 @@ int		putcoin(t_mlx *mlx);
 // enemy function
 void enemygen(t_mlx *mlx);
 int	findenemy(t_mlx *mlx);
+void  emove(t_mlx *mlx);
 
 // exit function
 void	wexit(t_mlx *mlx, char *s, int f);

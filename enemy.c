@@ -36,7 +36,7 @@ void  enemygen(t_mlx *mlx)
     }
   }
   if (i == 1000001)
-    ft_putstr("warning: no space for enemy", 1);
+    ft_putstr("warning: no enemy", 1);
 }
 
 void	fillenemy(t_mlx *mlx)
@@ -57,43 +57,41 @@ void	fillenemy(t_mlx *mlx)
 	mlx->enemy[i] = NULL;
 }
 
-void  emove(t_mlx *mlx, char d, t_cord e)
+void  emove(t_mlx *mlx)//, char d, t_cord e)
 {
-  int gox = 0;
-  int goy = 0;
+  t_cord  e;
 
-  if (d == 'x')
-    gox = 1;
-  else 
-    goy = 1;
-  while (1)
-  {
-    if (mlx->map[e.y + goy][e.x + gox] == '1' 
-    || mlx->map[e.y + goy][e.x + gox] == 'C')
-    {
-      goy *= -1;
-      gox *= -1;
-    }
-    mlx->map[e.y + goy][e.x + gox] = 'X';
-    mlx->map[e.y][e.x] = '0';
-    putmap(mlx);
-  }
+  e = findplayer(mlx->map, 'X');
+  if (mlx->map[e.y][e.x + mlx->go] != '0')
+    mlx->go *= -1;
+  if (mlx->map[e.y][e.x + mlx->go] == 'P')
+      wexit(mlx, "YOU LOSE", 0);
+  mlx->map[e.y][e.x + mlx->go] = 'X';
+  mlx->map[e.y][e.x] = '0';
+  putmap(mlx);
 }
 
-void  moveye(t_mlx *mlx)
+/*void  moveye(t_mlx *mlx)
 {
   t_cord  p;
   t_cord  x;
+  static int       i;
 
-  p = findplayer(mlx->map, 'P');
+ p = findplayer(mlx->map, 'P');
   x = findplayer(mlx->map, 'X');
-  if (x.x == p.x)
-    emove(mlx, 'y', x);
-  else if (x.y == p.y)
+  if (x.x == p.x && i)
+  {
     emove(mlx, 'x', x);
+    i = 0;
+  }
+  else if (x.y == p.y && i)
+  {
+    emove(mlx, 'y', x);
+    i = 0;
+  }
   else 
     emove(mlx, 'x', x);
-}
+}*/
 
 
 int	findenemy(t_mlx *mlx)

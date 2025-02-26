@@ -65,6 +65,8 @@ int	doara(t_mlx *mlx)
 		findenemy(mlx);
 		findcoins(mlx);
   }
+  if (cnt % 50001 == 0)
+    emove(mlx);
 	cnt++;
 	return (0);
 }
