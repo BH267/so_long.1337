@@ -66,7 +66,8 @@ void  emove(t_mlx *mlx)//, char d, t_cord e)
   e = findplayer(mlx->map, 'X');
   if (!e.y || !e.x)
     return ;
-  if (mlx->map[e.y][e.x + mlx->go] != '0')
+  if (mlx->map[e.y][e.x + mlx->go] != '0'
+    && mlx->map[e.y][e.x + mlx->go] != 'P')
     mlx->go *= -1;
   if (mlx->map[e.y][e.x + mlx->go] == 'P')
       wexit(mlx, "YOU LOSE", 0);

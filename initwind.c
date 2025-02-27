@@ -109,8 +109,8 @@ void	dispwind(t_mlx *mlx)
 			mlx->size.my, "awdii");
 	if (!mlx->mlx_win)
 		return ;
-  mlx->go = 1;
-  ft_path(mlx);
+	mlx->go = 1;
+	ft_path(mlx);
 	fillcoin(mlx);
 	fillenemy(mlx);
 	putmap(mlx);
