@@ -52,7 +52,8 @@ void	putimges(t_mlx *mlx, int x, int y)
 		putimg("textures/wall.xpm", mlx, x, y);
 	else if (mlx->map[y / 64][x / 64] == 'P')
 		putimg("textures/hero1.xpm", mlx, x, y);
-	else if (mlx->map[y / 64][x / 64] == 'C')
+	else if (mlx->map[y / 64][x / 64] == 'C'
+			|| mlx->map[y / 64][x / 64] == 'X')
 		mlx_loop_hook(mlx->mlx, doara, mlx);
 	else if (mlx->map[y / 64][x / 64] == 'E' && (mlx->pec->coin))
 		putimg("textures/closed_door.xpm", mlx, x, y);
