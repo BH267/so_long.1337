@@ -39,7 +39,6 @@ void  enemygen(t_mlx *mlx)
   }
   if (i == 1000001)
     ft_putstr("warning: no enemy", 1);
-  printf("hak: [ y:%d , x:%d ]", y, x);
 }
 
 void	fillenemy(t_mlx *mlx)
