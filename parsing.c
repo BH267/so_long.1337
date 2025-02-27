@@ -44,7 +44,7 @@ void	ft_checkway(char **cmap, t_mlx *mlx)
 		j = 0;
 		while (cmap[i][j])
 		{
-			if (cmap[i][j] == 'C')
+			if (cmap[i][j] == 'C' || cmap[i][j] == 'E')
 			{
 				hb_mtrfree(cmap);
 				ft_rputstr("invalid map", mlx, 1);

@@ -12,7 +12,6 @@
 
 #include "solong.h"
 
-
 void  ft_path(t_mlx *mlx)
 {
   int i;
@@ -35,15 +34,15 @@ void	putimg(char *path, t_mlx *mlx, int x, int y)
 
 	h = 64;
 	w = 64;
-  path = ft_strjoin(mlx->path, path);
+	path = ft_strjoin(mlx->path, path);
 	mlx->pimg = mlx_xpm_file_to_image(mlx->mlx, path, &w, &h);
 	if (!mlx->pimg)
-  {
+	{
+		free(path);
 		wexit(mlx, "xpm_file_to_image failed", 1);
-    free(path);
-  }
+	}
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->pimg, x, y);
-  free(path);
+	free(path);
 	mlx_destroy_image(mlx->mlx, mlx->pimg);
 }
 
@@ -63,34 +62,40 @@ void	putimges(t_mlx *mlx, int x, int y)
 		putimg("textures/floor.xpm", mlx, x, y);
 }
 
+void	putmoves(t_mlx *mlx)
+{
+	static int	c;
+	char	*moves;
+
+	moves = ft_itoa(mlx->count);
+	if (c != mlx->count)
+	{
+		ft_putstr("==={ moves :", 0);
+		ft_putstr(moves, 1);
+		c = mlx->count;
+	}
+	mlx_string_put(mlx->mlx, mlx->mlx_win, 15, 30, 0, "==| moves :");
+	mlx_string_put(mlx->mlx, mlx->mlx_win, 85, 30, 0, moves);
+	free(moves);
+}
+
 void	putmap(t_mlx *mlx)
 {
 	int		j;
 	int		i;
-	char	*moves;
-  static int   c;
 
-	moves = ft_itoa(mlx->count);
-  if (c != mlx->count)
-  {
-	  ft_putstr("==| moves :", 0);
-	  ft_putstr(moves, 1);
-    c = mlx->count;
-  }
 	i = 0;
 	while (i < mlx->size.my)
 	{
 		j = 0;
 		while (j < mlx->size.mx)
 		{
-			mlx_string_put(mlx->mlx, mlx->mlx_win, 15, 30, 0, "==| moves :");
-			mlx_string_put(mlx->mlx, mlx->mlx_win, 85, 30, 0, moves);
+			putmoves(mlx);
 			putimges(mlx, j, i);
 			j += 64;
 		}
 		i += 64;
 	}
-	free(moves);
 }
 
 int	closewind(void *mlx)

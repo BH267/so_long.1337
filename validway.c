@@ -41,8 +41,13 @@ t_cord	findplayer(char **map, char c)
 
 void	ft_floodfill(char **map, int x, int y)
 {
-	if (map[y][x] == '1' || map[y][x] == 'E' || map[y][x] == '@')
+	if (map[y][x] == '1' || map[y][x] == '@')
 		return ;
+	if (map[y][x] == 'E')
+	{
+		map[y][x] = '1';
+		return ;
+	}
 	map[y][x] = '@';
 	ft_floodfill(map, x + 1, y);
 	ft_floodfill(map, x - 1, y);
