@@ -29,7 +29,7 @@ void	validpath(char *ber)
 	while (*ber)
 		ber++;
 	ber -= 4;
-	if (*(ber - 1) == '/')
+	if (*(ber - 1) == '/' || *(ber - 1) == '.')
 		ft_rputstr("invalid path", NULL, 1);
 	if (ft_strcmp(ber, ".ber"))
 		ft_rputstr("invalid path", NULL, 1);

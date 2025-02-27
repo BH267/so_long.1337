@@ -24,6 +24,8 @@ void  enemygen(t_mlx *mlx)
   int x;
   int i;
 
+  y = 1;
+  x = 1;
   i = 0;
   while (i++ < 1000000)
   {
@@ -37,6 +39,7 @@ void  enemygen(t_mlx *mlx)
   }
   if (i == 1000001)
     ft_putstr("warning: no enemy", 1);
+  printf("hak: [ y:%d , x:%d ]", y, x);
 }
 
 void	fillenemy(t_mlx *mlx)
@@ -62,6 +65,8 @@ void  emove(t_mlx *mlx)//, char d, t_cord e)
   t_cord  e;
 
   e = findplayer(mlx->map, 'X');
+  if (!e.y || !e.x)
+    return ;
   if (mlx->map[e.y][e.x + mlx->go] != '0')
     mlx->go *= -1;
   if (mlx->map[e.y][e.x + mlx->go] == 'P')
